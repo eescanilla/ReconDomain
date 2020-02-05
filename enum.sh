@@ -22,4 +22,4 @@ echo -e "\nTesting Subdomain Takeover"
 #cat "$1/$1_subdominiosvivos.txt" | sort -u| sed 's/https\?:\/\///' >> "$1/$1_subdomains.txt"
 cat "$1/$1_subdominiosvivos.txt" | sort -u >> "$1/$1_subdomains.txt"
 
-python3 /opt/takeover/takeover.py -l "$1/$1_subdomains.txt" -o "$1/$1_takeover_results"
+python3 /opt/takeover/takeover.py -l "$1/$1_subdomains.txt" -o "$1/$1_takeover_results.txt" -v
