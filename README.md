@@ -18,9 +18,9 @@ SubdomainTakeover(https://github.com/m4ll0k/takeover)
 
 # Usage
 
- `./enum 'domain'`
+ `./enum.sh 'domain'`
 
 eg.
 
-`./enum google.com`
+`./enum.sh google.com`
 
