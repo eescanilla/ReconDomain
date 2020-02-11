@@ -7,7 +7,7 @@ Tested on Kali linux.
 
 Install all tools in /opt/
 
-Tools:
+# Tools:
 
 Sublist3r (https://github.com/aboul3la/Sublist3r)
 
