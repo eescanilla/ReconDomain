@@ -17,12 +17,12 @@ amass enum -d $1 -o "$1/$1_amass.txt" | sort -u
 echo -e "\n[+] Done."
 
 echo -e "\n[+] Listing Live domains.."
-cat "$1/$1_sublist3r.txt" | sort -u| httprobe >> "$1/$1_subdominiosvivos.txt"
-cat "$1/$1_amass.txt" |sort -u | httprobe >> "$1/$1_subdominiosvivos.txt"
+cat "$1/$1_sublist3r.txt" | sort -u| httprobe >> "$1/$1_live_subdomain.txt"
+cat "$1/$1_amass.txt" |sort -u | httprobe >> "$1/$1_live_subdomain.txt"
 echo -e "\n[+] Done."
 
 echo -e "\n[+] Testing Subdomain Takeover"
-cat "$1/$1_subdominiosvivos.txt" | sort -u >> "$1/$1_subdomains.txt"
+cat "$1/$1_live_subdomain.txt" | sort -u >> "$1/$1_subdomains.txt"
 python3 /opt/takeover/takeover.py -l "$1/$1_subdomains.txt" -o "$1/$1_takeover_results.txt" -v
 
 echo -e "\n[+] Testing CORS "
