@@ -28,10 +28,21 @@ python3 /opt/takeover/takeover.py -l "$1/$1_subdomains.txt" -o "$1/$1_takeover_r
 echo -e "\n[+] Testing CORS "
 
 while read line; do
-curl='$(curl -k -s -v $line -H "Origin: https://www.google.cl" > /dev/null)'
-    if [[ $curl =~ "Access-Control-Allow-Origin: https://www.google.cl" ]]; then
-        echo -e $line " .... is Vulnerable to CORS"
+cors='$(curl -k -s -v $line -H "Origin: https://www.google.cl" > /dev/null)'
+    if [[ $cors =~ "Access-Control-Allow-Origin: https://www.google.cl" ]]; then
+        echo -e $line " .... it's seem vulnerable to CORS"
 	echo -e "curl -k -s -v $line -H "Origin: https://www.google.cl"" >> $1/$1_cors.txt
+    fi
+done < $1/$1_subdomains.txt
+
+
+echo -e "\n[+] Testing Methods HTTP"
+
+while read line; do
+put='$(curl -i -X OPTIONS $line > /dev/null)'
+    if [[ $put =~ "PUT" ]]; then
+        echo -e $line " .... it's seem vulnerable to method PUT"
+	echo -e "curl -i -X OPTIONS $line " >> $1/$1_method_put.txt
     fi
 done < $1/$1_subdomains.txt
 
