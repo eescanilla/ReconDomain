@@ -46,5 +46,15 @@ put='$(curl -i -X OPTIONS $line > /dev/null)'
     fi
 done < $1/$1_subdomains.txt
 echo -e "[+] Done"
-#comming... 
-#echo -e "\n[+] Testing Host Header Attack"
+
+echo -e "\n[+] Testing Host Header Attack"
+
+while read line; do
+host='$(curl -H "Host: https://www.google.cl" $line > /dev/null)'
+    if [[ $host =~ "https://www.google.cl" ]]; then
+        echo -e $line " .... it's seem vulnerable to Host Header Attack"
+        echo -e "curl -H "Host: https://www.google.cl" $line " >> $1/$1_hostheader.txt
+    fi
+done < $1/$1_subdomains.txt
+echo -e "[+] Done"
+
