@@ -31,7 +31,7 @@ while read line; do
 cors='$(curl -k -s -v $line -H "Origin: https://www.google.cl" > /dev/null)'
     if [[ $cors =~ "Access-Control-Allow-Origin: https://www.google.cl" ]]; then
         echo -e $line " .... it's seem vulnerable to CORS"
-	echo -e "curl -k -s -v $line -H "Origin: https://www.google.cl"" >> $1/$1_cors.txt
+	echo -e 'curl -k -s -v $line -H "Origin: https://www.google.cl"' >> $1/$1_cors.txt
     fi
 done < $1/$1_subdomains.txt
 echo -e "[+] Done"
@@ -51,9 +51,9 @@ echo -e "\n[+] Testing Host Header Attack"
 
 while read line; do
 host='$(curl -H "Host: https://www.google.cl" $line > /dev/null)'
-    if [[ $host =~ "https://www.google.cl" ]]; then
+    if [[ $host =~ "Location: https://www.google.cl" ]]; then
         echo -e $line " .... it's seem vulnerable to Host Header Attack"
-        echo -e "curl -H "Host: https://www.google.cl" $line " >> $1/$1_hostheader.txt
+        echo -e 'curl -H "Host: https://www.google.cl" $line ' >> $1/$1_hostheader.txt
     fi
 done < $1/$1_subdomains.txt
 echo -e "[+] Done"
