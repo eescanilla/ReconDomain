@@ -14,7 +14,9 @@ Sublist3r (https://github.com/aboul3la/Sublist3r)
 
 Amass (apt install -y amass)
 
-SubdomainTakeover(https://github.com/m4ll0k/takeover)
+SubdomainTakeover (https://github.com/m4ll0k/takeover)
+
+Httprobe (https://github.com/tomnomnom/httprobe)
 
 
 # Usage
