@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "[+]Creating folder"
+echo -e "[+] Creating folder"
 
 if [ ! -d "$1" ];then
 mkdir $1
@@ -34,7 +34,7 @@ cors='$(curl -k -s -v $line -H "Origin: https://www.google.cl" > /dev/null)'
 	echo -e "curl -k -s -v $line -H "Origin: https://www.google.cl"" >> $1/$1_cors.txt
     fi
 done < $1/$1_subdomains.txt
-
+echo -e "\n[+] Done"
 
 echo -e "\n[+] Testing Methods HTTP"
 
@@ -45,6 +45,6 @@ put='$(curl -i -X OPTIONS $line > /dev/null)'
 	echo -e "curl -i -X OPTIONS $line " >> $1/$1_method_put.txt
     fi
 done < $1/$1_subdomains.txt
-
+echo -e "\n[+] Done"
 #comming... 
 #echo -e "\n[+] Testing Host Header Attack"
