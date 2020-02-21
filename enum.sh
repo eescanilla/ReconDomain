@@ -10,16 +10,16 @@ echo -e "[+] Folder Was Created"
 fi
 echo -e "\n[+] Searching subdomain with Sublist3r.."
 python /opt/Sublist3r/sublist3r.py -d $1 -o "$1/$1_sublist3r.txt" | sort -u
-echo -e "\n[+] Done."
+echo -e "[+] Done."
 
 echo -e "\n[+] Searching subdomain with amass"
 amass enum -d $1 -o "$1/$1_amass.txt" | sort -u
-echo -e "\n[+] Done."
+echo -e "[+] Done."
 
 echo -e "\n[+] Listing Live domains.."
 cat "$1/$1_sublist3r.txt" | sort -u| httprobe >> "$1/$1_live_subdomain.txt"
 cat "$1/$1_amass.txt" |sort -u | httprobe >> "$1/$1_live_subdomain.txt"
-echo -e "\n[+] Done."
+echo -e "[+] Done."
 
 echo -e "\n[+] Testing Subdomain Takeover"
 cat "$1/$1_live_subdomain.txt" | sort -u >> "$1/$1_subdomains.txt"
@@ -34,7 +34,7 @@ cors='$(curl -k -s -v $line -H "Origin: https://www.google.cl" > /dev/null)'
 	echo -e "curl -k -s -v $line -H "Origin: https://www.google.cl"" >> $1/$1_cors.txt
     fi
 done < $1/$1_subdomains.txt
-echo -e "\n[+] Done"
+echo -e "[+] Done"
 
 echo -e "\n[+] Testing Methods HTTP"
 
@@ -45,6 +45,6 @@ put='$(curl -i -X OPTIONS $line > /dev/null)'
 	echo -e "curl -i -X OPTIONS $line " >> $1/$1_method_put.txt
     fi
 done < $1/$1_subdomains.txt
-echo -e "\n[+] Done"
+echo -e "[+] Done"
 #comming... 
 #echo -e "\n[+] Testing Host Header Attack"
